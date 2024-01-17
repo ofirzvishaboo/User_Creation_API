@@ -16,7 +16,7 @@ class CombinedTests(unittest.TestCase):
         self.backend.check_data()
 
     def test_frontend_display(self):
-        """Tests frontend display of user names."""
+        """Tests frontend display of usernames."""
         frontend = FrontEndTests(self.user_id)
         frontend.check_name()
 
