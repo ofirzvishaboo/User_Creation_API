@@ -21,7 +21,7 @@ pipeline {
 
     stage('run backend_testing') {
       steps {
-        sh 'which python'
+        sh 'pwd'
         sh 'python backend_testing.py'
       }
     }
