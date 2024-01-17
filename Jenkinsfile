@@ -9,7 +9,7 @@ pipeline {
 
     stage('run rest_app') {
       steps {
-        sh 'nohup python rest_app.py &'
+        sh 'nohup python3 rest_app.py &'
       }
     }
 
