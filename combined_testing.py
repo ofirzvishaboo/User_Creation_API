@@ -4,10 +4,10 @@ from frontend_testing import FrontEndTests
 
 
 class CombinedTests(unittest.TestCase):
-    id = 6
-    name = 'aba'
+    user_id = 7
+    name = 'dad'
     """Combines backend and frontend tests for comprehensive coverage."""
-    backend = BackEndTests(id, name)
+    backend = BackEndTests(user_id, name)
 
     def test_backend_functionality(self):
         """Tests backend operations for posting, retrieving users, and data integrity."""
@@ -17,12 +17,13 @@ class CombinedTests(unittest.TestCase):
 
     def test_frontend_display(self):
         """Tests frontend display of user names."""
-        frontend = FrontEndTests(self.id)
+        frontend = FrontEndTests(self.user_id)
         frontend.check_name()
 
-    def tearDown(self):
+    @classmethod
+    def tearDownClass(cls):
         """Performs cleanup after each test."""
-        self.backend.cleanup()
+        cls.backend.clean_user()
 
 
 if __name__ == "__main__":

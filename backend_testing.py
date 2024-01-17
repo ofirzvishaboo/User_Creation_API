@@ -20,7 +20,7 @@ class BackEndTests:
         existing_name = db_connector.select_id(self.user_id)
         assert self.name == existing_name
 
-    def cleanup(self):
+    def clean_user(self):
         res = requests.delete(f'http://127.0.0.1:5000/users/{self.user_id}')
         assert res.status_code == 200
         # db_connector.delete_user(self.user_id)

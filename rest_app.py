@@ -1,5 +1,7 @@
 from flask import Flask, request
 from db_connector import DBConnector
+import os
+import signal
 
 app = Flask(__name__)
 mdb_connector = DBConnector()
@@ -25,6 +27,12 @@ def user(user_id):
     elif request.method == 'DELETE':
         mdb_connector.delete_user(user_id)
         return {'Deleted user_id': user_id}, 200
+
+
+@app.route('/stop_server', methods=['GET'])
+def stop_server():
+    os.kill(os.getpid(), signal.SIGINT)
+    return 'Server stopped'
 
 
 if __name__ == '__main__':
