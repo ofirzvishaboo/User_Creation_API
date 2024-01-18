@@ -6,6 +6,7 @@ pipeline {
         git(url: 'https://github.com/ofirzvishaboo/flask_devop_project.git', branch: 'master')
       }
     }
+    }
 
     stage('run rest_app') {
       steps {
