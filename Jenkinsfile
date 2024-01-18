@@ -9,7 +9,7 @@ pipeline {
 
     stage('run rest_app') {
       steps {
-        sh 'pip3 install requirements.txt'
+        sh 'pip3 install -r requirements.txt'
         sh 'nohup python3 rest_app.py &'
       }
     }
