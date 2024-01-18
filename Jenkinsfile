@@ -6,10 +6,10 @@ pipeline {
         git(url: 'https://github.com/ofirzvishaboo/flask_devop_project.git', branch: 'master')
       }
     }
-    }
 
     stage('run rest_app') {
       steps {
+        sh 'pip3 install requirements.txt'
         sh 'nohup python3 rest_app.py &'
       }
     }

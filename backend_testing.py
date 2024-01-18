@@ -31,4 +31,4 @@ if __name__ == "__main__":
     backend_test.check_post()
     backend_test.get_user()
     backend_test.check_data()
-    backend_test.cleanup()
+    backend_test.clean_user()
