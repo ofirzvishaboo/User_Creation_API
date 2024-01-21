@@ -1,47 +1,44 @@
 pipeline {
-  agent any
-  stages {
-    stage('checkout code- github') {
-      steps {
-        git(url: 'https://github.com/ofirzvishaboo/flask_devop_project.git', branch: 'master')
-      }
+  agent {
+        docker {
+            image 'python:3.11.4'
+        }
     }
-
+  stages {
     stage('run rest_app') {
       steps {
-        sh 'pip3 install -r requirements.txt'
+        sh 'pip install -r requirements.txt'
         sh 'nohup python3 rest_app.py &'
       }
     }
 
     stage('run web_app') {
       steps {
-        sh 'nohup python3 web_app.py &'
+        sh 'nohup python web_app.py &'
       }
     }
 
     stage('run backend_testing') {
       steps {
-        sh 'pwd'
-        sh 'python3 backend_testing.py'
+        sh 'python backend_testing.py'
       }
     }
 
     stage('run frontend_testing') {
       steps {
-        sh 'python3 frontend_testing.py'
+        sh 'python frontend_testing.py'
       }
     }
 
     stage('run combined_testing') {
       steps {
-        sh 'python3 combined_testing.py'
+        sh 'python combined_testing.py'
       }
     }
 
     stage('run clean_environment') {
       steps {
-        sh 'python3 clean_environment.py'
+        sh 'python clean_environment.py'
       }
     }
 

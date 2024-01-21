@@ -23,8 +23,10 @@ class DBConnector:
         with self.conn.cursor() as cursor:
             cursor.execute("INSERT INTO users (user_name, user_id) VALUES (%s, %s)",
                            (user_name, user_id))  # Prepared statement
-        self.conn.commit()
-        return 200
+            self.conn.commit()
+            num_affected_rows = cursor.rowcount
+            if num_affected_rows > 0:
+                return 200
 
     def select_id(self, user_id):
         with self.conn.cursor() as cursor:
