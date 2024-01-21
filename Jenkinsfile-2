@@ -9,7 +9,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 // Install pip packages or other dependencies if needed
-                sh 'pip install -r requirements.txt'
+                sh 'pip3 install -r requirements.txt'
             }
         }
         stage('Run backend server (background)') {
