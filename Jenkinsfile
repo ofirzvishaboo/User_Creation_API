@@ -4,13 +4,15 @@ pipeline {
             image 'python:3.11.4'
         }
     }
-  stages {
-    stage('run rest_app') {
-      steps {
-        sh 'pip install -r requirements.txt'
-        sh 'nohup python3 rest_app.py &'
-      }
-    }
+    stages {
+        stage('Run rest_app') {
+            steps {
+                script {
+                    sh 'pip install -r requirements.txt'
+                    sh 'nohup python rest_app.py &'
+                }
+            }
+        }
 
     stage('run web_app') {
       steps {
