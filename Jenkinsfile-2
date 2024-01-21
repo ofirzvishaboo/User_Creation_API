@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Push Docker image to Hub') {
             steps {
-                docker credentialsId 'dockerhub-credentials'
+                sh 'docker credentialsId \'dockerhub-credentials\''
                 sh 'docker push flask_name_api'
             }
         }
