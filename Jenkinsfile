@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.11.4'
+            image 'python:alphine3.19'
             // Specify additional options if needed, e.g., reuseNode, args, etc.
         }
     }
