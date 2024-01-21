@@ -5,10 +5,16 @@ pipeline {
             // Specify additional options if needed, e.g., reuseNode, args, etc.
         }
     }
+
+    environment {
+        // Define environment variables if needed
+    }
+
     stages {
         stage('Run rest_app') {
             steps {
                 script {
+                    // Use 'python' instead of 'python3' for better compatibility
                     sh 'pip install -r requirements.txt'
                     sh 'nohup python rest_app.py &'
                 }
@@ -53,6 +59,12 @@ pipeline {
                     sh 'python clean_environment.py'
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            // Clean up resources if needed
         }
     }
 }
