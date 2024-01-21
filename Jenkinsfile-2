@@ -35,6 +35,7 @@ pipeline {
                     sh 'docker push ofirzvishaboo/flask_name_api:latest'
                 }
             }
+            }
         }
         stage('Update docker-compose image version') {
             steps {
@@ -54,4 +55,3 @@ pipeline {
         }
     }
 }
-
