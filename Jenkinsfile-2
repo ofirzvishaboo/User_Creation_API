@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Run backend server (background)') {
             steps {
-                sh 'nohup python rest_app.py &'      // macOS/Linux
+                sh 'nohup python3 rest_app.py &'      // macOS/Linux
             }
         }
         stage('Build Docker image') {
@@ -25,7 +25,7 @@ pipeline {
         stage('Test Docker image') {
             steps {
                 // Run your custom testing script (e.g., docker_backend_testing.py)
-                sh 'python docker_backend_testing.py'
+                sh 'python3 docker_backend_testing.py'
             }
         }
         stage('Push Docker image to Hub') {
