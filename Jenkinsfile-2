@@ -30,9 +30,10 @@ pipeline {
         }
         stage('Push Docker image to Hub') {
             steps {
-                withDockerRegistry([credentialsId: 'ofir-dockerhub', url: 'https://hub.docker.com']) {
-                    sh 'docker push ofirzvishaboo/flask_name_api'
-            }
+                script {
+                    withDockerRegistry([credentialsId: 'your-dockerhub-credentials-id', url: 'https://hub.docker.com']) {
+                    sh 'docker push your-docker-hub-username/flask_name_api'
+                }
             }
         }
         stage('Update docker-compose image version') {
