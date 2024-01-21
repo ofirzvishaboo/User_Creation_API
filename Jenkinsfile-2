@@ -1,70 +1,55 @@
 pipeline {
-    agent {
-        docker {
-            image 'python:3.11.4'
-            // Specify additional options if needed, e.g., reuseNode, args, etc.
-        }
-    }
-
-    environment {
-        // Define environment variables if needed
-    }
-
+    agent any
     stages {
-        stage('Run rest_app') {
+        stage('Checkout') {
             steps {
-                script {
-                    // Use 'python' instead of 'python3' for better compatibility
-                    sh 'pip install -r requirements.txt'
-                    sh 'nohup python rest_app.py &'
-                }
+                git branch: 'master', url: 'https://github.com/ofirzvishaboo/flask_devop_project.git'
             }
         }
-
-        stage('Run web_app') {
+        stage('Install dependencies') {
             steps {
-                script {
-                    sh 'nohup python web_app.py &'
-                }
+                // Install pip packages or other dependencies if needed
+                sh 'pip install -r requirements.txt'
             }
         }
-
-        stage('Run backend_testing') {
+        stage('Run backend server (background)') {
             steps {
-                script {
-                    sh 'python backend_testing.py'
-                }
+                sh 'nohup python rest_app.py &'      // macOS/Linux
             }
         }
-
-        stage('Run frontend_testing') {
+        stage('Build Docker image') {
             steps {
-                script {
-                    sh 'python frontend_testing.py'
-                }
+                sh 'docker build -t flask_name_api .'
             }
         }
-
-        stage('Run combined_testing') {
+        stage('Test Docker image') {
             steps {
-                script {
-                    sh 'python combined_testing.py'
-                }
+                // Run your custom testing script (e.g., docker_backend_testing.py)
+                sh 'python docker_backend_testing.py'
             }
         }
-
-        stage('Run clean_environment') {
+        stage('Push Docker image to Hub') {
             steps {
-                script {
-                    sh 'python clean_environment.py'
-                }
+                docker credentialsId 'dockerhub-credentials'
+                sh 'docker push flask_name_api'
             }
         }
-    }
-
-    post {
-        always {
-            // Clean up resources if needed
+        stage('Update docker-compose image version') {
+            steps {
+                sh 'echo IMAGE_TAG=${BUILD_NUMBER} > .env'
+            }
+        }
+        stage('Run docker-compose') {
+            steps {
+                sh 'docker-compose up -d'
+            }
+        }
+        stage('Clean environment') {
+            steps {
+                sh 'docker-compose down'
+                sh 'docker rmi flask_name_api'
+            }
         }
     }
 }
+

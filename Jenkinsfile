@@ -1,10 +1,15 @@
 pipeline {
-    agent {
+    agent any
         docker {
             image 'python:alphine'
             // Specify additional options if needed, e.g., reuseNode, args, etc.
         }
-    }
+        environment {
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials-id')
+        DOCKER_IMAGE_NAME = 'your-docker-hub-username/your-docker-image-name'
+        IMAGE_TAG = "${BUILD_NUMBER}"
+        }
+
     stages {
         stage('Run rest_app') {
             steps {
