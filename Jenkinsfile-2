@@ -30,8 +30,8 @@ pipeline {
         }
         stage('Push Docker image to Hub') {
             steps {
-                withDockerRegistry([credentialsId: 'ofir-dockerhub', url: 'https://registry.hub.docker.com']) {
-                    sh 'docker push flask_name_api'
+                withDockerRegistry([credentialsId: ${ofir-dockerhub}, url: 'https://registry.hub.docker.com']) {
+                    sh 'docker push ofirzvishaboo/flask_name_api'
             }
             }
         }
