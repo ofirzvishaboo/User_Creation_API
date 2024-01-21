@@ -1,6 +1,10 @@
 pipeline {
     agent any
     stages {
+        stage('Set Default Docker Context') {
+            steps {
+                sh 'docker context use default'
+            }
         stage('Checkout') {
             steps {
                 git branch: 'master', url: 'https://github.com/ofirzvishaboo/flask_devop_project.git'
