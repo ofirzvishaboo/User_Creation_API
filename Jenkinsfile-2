@@ -32,8 +32,8 @@ pipeline {
             steps {
                 // Run your custom testing script (e.g., docker_backend_testing.py)
                 sh 'python3 docker_backend_testing.py'
-                sh 'docker stop my_con'
-                sh 'docker rm my_con'
+                sh 'docker stop my_container'
+                sh 'docker rm my_container'
             }
         }
         stage('Push Docker image to Hub') {

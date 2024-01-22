@@ -3,7 +3,7 @@ version: '3.8'
 services:
   backend:
     build: .
-    container_name: my_con
+    container_name: my_container
     ports:
       - "5003:5000"
     environment:
