@@ -25,7 +25,8 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 sh 'docker build -t ofirzvishaboo/flask_name_api .'
-                sh 'docker-compose up -d devops-project'
+                sh 'docker-compose up -d'
+                sh 'docker ps'
             }
         }
         stage('Test Docker image') {
