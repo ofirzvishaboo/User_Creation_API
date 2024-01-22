@@ -1,63 +1,48 @@
 pipeline {
-    agent any
-        docker {
-            image 'python:alphine'
-            // Specify additional options if needed, e.g., reuseNode, args, etc.
-        }
-        environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials-id')
-        DOCKER_IMAGE_NAME = 'your-docker-hub-username/your-docker-image-name'
-        IMAGE_TAG = "${BUILD_NUMBER}"
-        }
-
-    stages {
-        stage('Run rest_app') {
-            steps {
-                script {
-                    sh 'pip install -r requirements.txt'
-                    sh 'nohup python rest_app.py &'
-                }
-            }
-        }
-
-        stage('Run web_app') {
-            steps {
-                script {
-                    sh 'nohup python web_app.py &'
-                }
-            }
-        }
-
-        stage('Run backend_testing') {
-            steps {
-                script {
-                    sh 'python backend_testing.py'
-                }
-            }
-        }
-
-        stage('Run frontend_testing') {
-            steps {
-                script {
-                    sh 'python frontend_testing.py'
-                }
-            }
-        }
-
-        stage('Run combined_testing') {
-            steps {
-                script {
-                    sh 'python combined_testing.py'
-                }
-            }
-        }
-
-        stage('Run clean_environment') {
-            steps {
-                script {
-                    sh 'python clean_environment.py'
-                }
-            }
-        }
+  agent any
+  stages {
+    stage('checkout code- github') {
+      steps {
+        git(url: 'https://github.com/ofirzvishaboo/flask_devop_project.git', branch: 'master')
+      }
     }
+
+    stage('run rest_app') {
+      steps {
+        sh 'nohup python3 rest_app.py &'
+      }
+    }
+
+    stage('run web_app') {
+      steps {
+        sh 'nohup python web_app.py &'
+      }
+    }
+
+    stage('run backend_testing') {
+      steps {
+        sh 'pwd'
+        sh 'python backend_testing.py'
+      }
+    }
+
+    stage('run frontend_testing') {
+      steps {
+        sh 'python frontend_testing.py'
+      }
+    }
+
+    stage('run combined_testing') {
+      steps {
+        sh 'python combined_testing.py'
+      }
+    }
+
+    stage('run clean_environment') {
+      steps {
+        sh 'python clean_environment.py'
+      }
+    }
+
+  }
 }

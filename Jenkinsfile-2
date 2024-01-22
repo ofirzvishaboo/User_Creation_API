@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Run backend server (background)') {
             steps {
-                sh 'nohup python3 rest_app.py &'      // macOS/Linux
+                sh 'nohup python3 rest_app.py &'
             }
         }
         stage('Build Docker image') {
