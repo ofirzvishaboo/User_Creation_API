@@ -9,6 +9,15 @@ class DBConnector:
         self.user = user
         self.passwd = passwd
         self.conn = pymysql.connect(host=self.host, port=self.port, user=self.user, passwd=self.passwd, db=self.db)
+        with self.conn.cursor() as cursor:
+            cursor.execute("""
+            CREATE TABLE IF NOT EXISTS users (
+                user_id INT PRIMARY KEY,
+                user_name VARCHAR(50) NOT NULL,
+                creation_date VARCHAR(50) NOT NULL
+            );
+        """)
+            self.conn.commit()
 
     def __del__(self):
         self.conn.close()  # Close connection when object is destroyed
