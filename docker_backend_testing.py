@@ -4,7 +4,6 @@ import requests
 def test_dockerized_app():
     url = "http://127.0.0.1:5000/users/1"  # Adjust URL as needed
     response = requests.get(url)
-    print(response.status_code)
     assert response.status_code == 200, "Unexpected response status code"
     # assert "users" in response.json(), "Expected 'users' in response JSON"
 
