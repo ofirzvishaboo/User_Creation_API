@@ -25,15 +25,15 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 sh 'docker build -t ofirzvishaboo/flask_name_api .'
-                sh 'docker-compose up -d devops-project-backend'
+                sh 'docker-compose up -d devops-project'
             }
         }
         stage('Test Docker image') {
             steps {
                 // Run your custom testing script (e.g., docker_backend_testing.py)
                 sh 'python3 docker_backend_testing.py'
-                sh 'docker stop devops-project-backend'
-                sh 'docker rm devops-project-backend'
+                sh 'docker stop devops-project'
+                sh 'docker rm devops-project'
             }
         }
         stage('Push Docker image to Hub') {
