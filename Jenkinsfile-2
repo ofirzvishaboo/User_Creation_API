@@ -21,7 +21,7 @@ pipeline {
 
     stage('run rest_app') {
       steps {
-        sh 'docker-compose up -d'
+        sh 'python3 rest_app.py'
       }
     }
 
