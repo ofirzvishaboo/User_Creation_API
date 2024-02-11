@@ -15,7 +15,7 @@ services:
       - db
 
   db:
-    image: mysql:8.0  # Use MySQL image instead of Postgres
+    image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: password  # Set root password for initial setup
       MYSQL_USER: user
