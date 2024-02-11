@@ -27,13 +27,13 @@ pipeline {
 
     stage('run backend_testing') {
       steps {
-        sh 'python3 backend_testing.py'
+        sh 'python3 backend_testing.py &'
       }
     }
 
     stage('run clean_environment') {
       steps {
-        sh 'python3 clean_environment.py'
+        sh 'python3 clean_environment.py &'
       }
     }
 
