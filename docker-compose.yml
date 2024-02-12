@@ -2,6 +2,7 @@ version: "3.7"
 services:
   db:
      image: mysql:8.0
+     container_name: database
      volumes:
        - ./mydb:/var/lib/mysql
      environment:
@@ -23,13 +24,12 @@ services:
       - db
     image: ofirzvishaboo/flask_name_api:latest
     ports:
-      - "5001:5000"
-    expose:
-      - "5000"
+      - 3000:3000
     environment:
       MYSQL_DB_HOST: db:3306
       MYSQL_DB_USER: root
       MYSQL_DB_PASSWORD: pythoncourse
+      PORT: 3000
 #    healthcheck:
 #      test:  curl --fail http://localhost:5000/users/1 || exit 1
 #      interval: 10s
