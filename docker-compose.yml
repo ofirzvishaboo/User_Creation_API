@@ -23,7 +23,7 @@ services:
       - db
     image: ofirzvishaboo/flask_name_api:latest
     ports:
-      - "5000:5000"
+      - "5001:5000"
     expose:
       - "5000"
     environment:
