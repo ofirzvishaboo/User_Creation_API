@@ -21,7 +21,7 @@ pipeline {
 
     stage('run rest_app') {
       steps {
-        sh 'python3 rest_app.py'
+        sh 'python3 rest_app.py &'
       }
     }
 
