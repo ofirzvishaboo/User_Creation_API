@@ -21,26 +21,26 @@ pipeline {
 
     stage('run rest_app') {
       steps {
-        sh 'python3 rest_app.py &'
+        sh 'python3 rest_app.py'
       }
     }
 
     stage('run backend_testing') {
       steps {
-        sh 'python3 backend_testing.py &'
+        sh 'python3 backend_testing.py'
       }
     }
 
     stage('run clean_environment') {
       steps {
-        sh 'python3 clean_environment.py &'
+        sh 'python3 clean_environment.py'
       }
     }
 
     stage('Build Docker Image - Locally') {
       steps {
           // Build Docker image locally
-          sh 'docker build -t ofirzvishaboo/flask_name_api .'
+        sh 'docker build -t ofirzvishaboo/flask_name_api .'
         }
     }
 
@@ -62,7 +62,7 @@ pipeline {
 
     stage('Run Docker Compose Up') {
       steps {
-                sh 'docker-compose up -d'
+        sh 'docker-compose up -d'
       }
     }
 
