@@ -9,7 +9,7 @@ services:
        MYSQL_ROOT_PASSWORD: pythoncourse
        MYSQL_DATABASE: mydb
        MYSQL_USER: user
-       database_host: "database"
+       database_host: "host.docker.internal"
      ports:
        - "3307:3306"
      expose:
