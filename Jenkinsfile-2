@@ -77,7 +77,7 @@ pipeline {
     stage('Clean Environment') {
       steps {
         sh 'docker-compose down'
-        sh 'docker rmi ofirzvishaboo/flask_name_api'
+        sh 'docker rmi ofirzvishaboo/flask_name_api:latest'
       }
     }
   }
