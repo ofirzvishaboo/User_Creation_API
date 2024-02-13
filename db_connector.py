@@ -11,7 +11,6 @@ class DBConnector:
         self.port = port
         self.user = user
         self.passwd = passwd
-        print("host is... ", self.host)
         self.conn = pymysql.connect(host=self.host, port=self.port, user=self.user, passwd=self.passwd, db=self.db)
         with self.conn.cursor() as cursor:
             cursor.execute("""

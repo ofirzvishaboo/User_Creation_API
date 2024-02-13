@@ -4,4 +4,4 @@ image:
   tag: latest
 service:
   type: LoadBalancer
-appPort: 5000
+appPort: 3000
