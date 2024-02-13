@@ -9,6 +9,6 @@ RUN pip install -r requirements.txt
 COPY . .
 
 EXPOSE 5000
-ENV database_host host.docker.internal
+ENV database_host mysql-service
 
 CMD ["python", "rest_app.py"]
