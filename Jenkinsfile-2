@@ -90,7 +90,7 @@ pipeline {
                 sh 'curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && chmod +x get_helm.sh && ./get_helm.sh'
             }
             // Deploy HELM chart with image version
-            sh 'helm install my-app K8S/mychart --set image.version=ofirzvishaboo/flask_name_api:${BUILD_NUMBER} --version 1.0.0'
+            sh 'helm delete my-app'
         }
     }
     }
@@ -109,7 +109,8 @@ pipeline {
 
     stage('Clean HELM Environment') {
       steps {
-        sh 'helm delete my-app'
+        sh 'helm install my-app K8S/mychart --set image.version=ofirzvishaboo/flask_name_api:${BUILD_NUMBER} --version 1.0.0'
+
       }
     }
   }
