@@ -80,5 +80,37 @@ pipeline {
         sh 'docker rmi ofirzvishaboo/flask_name_api:latest'
       }
     }
+    stage('Deploy HELM Chart') {
+    steps {
+        script {
+            // Check if Helm is already installed
+            def helmInstalled = sh(script: 'command -v helm', returnStatus: true) == 0
+            if (!helmInstalled) {
+                // Download and install Helm
+                sh 'curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 && chmod +x get_helm.sh && ./get_helm.sh'
+            }
+            // Deploy HELM chart with image version
+            sh 'helm install my-app K8S/mychart --set image.version=ofirzvishaboo/flask_name_api:${BUILD_NUMBER} --version 1.0.0'
+        }
+    }
+    }
+    stage('Write Service URL') {
+      steps {
+        sh 'minikube service hello-python-service --url > k8s_url.txt'
+      }
+    }
+
+    stage('Test Deployed App') {
+      steps {
+        // Use K8S_backend_testing.py with service URL from k8s_url.txt
+        sh 'python3 K8S_backend_testing.py ${WORKSPACE}/k8s_url.txt'
+      }
+    }
+
+    stage('Clean HELM Environment') {
+      steps {
+        sh 'helm delete my-app'
+      }
+    }
   }
 }
