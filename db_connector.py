@@ -16,8 +16,8 @@ class DBConnector:
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS users (
                 user_id INT PRIMARY KEY,
-                user_name VARCHAR(50) NOT NULL,
-                creation_date VARCHAR(50) NOT NULL
+                user_name VARCHAR(50) NOT NULL
+                 
             );
         """)
             self.conn.commit()
