@@ -5,7 +5,7 @@ import pymysql
 
 class DBConnector:
     # change host to localhost for jenkinsfile-1
-    def __init__(self, host="db", port=3306, user='root', passwd='pythoncourse', db='my_db'):
+    def __init__(self, host="localhost", port=3306, user='root', passwd='pythoncourse', db='my_db'):
         self.db = db
         self.host = os.environ.get("database_host") or host
         self.port = port

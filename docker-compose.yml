@@ -8,8 +8,7 @@ services:
      environment:
        MYSQL_ROOT_PASSWORD: pythoncourse
        MYSQL_DATABASE: my_db
-       MYSQL_USER: user
-       database_host: "db"
+       MYSQL_USER: root
      ports:
        - "3307:3306"
      expose:
@@ -25,8 +24,9 @@ services:
       - db
     image: ofirzvishaboo/flask_name_api:latest
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
+      database_host: "host.docker.internal"
       MYSQL_DB_HOST: db:3306
       MYSQL_DB_USER: root
       MYSQL_DB_PASSWORD: pythoncourse
