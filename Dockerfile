@@ -9,6 +9,6 @@ RUN pip install -r requirements.txt
 COPY . .
 
 EXPOSE 5000
-ENV database_host mysql-service
+ENV database_host db
 
 CMD ["python", "rest_app.py"]
