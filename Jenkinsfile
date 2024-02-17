@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('checkout code- github') {
       steps {
-        git(url: 'https://github.com/ofirzvishaboo/flask_devop_project.git', branch: 'master')
+        git(url: 'https://github.com/ofirzvishaboo/User_Creation_API.git', branch: 'master')
       }
     }
 
