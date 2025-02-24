@@ -12,6 +12,24 @@ pipeline {
       }
     }
 
+   stage('Setup Python Environment and Install Dependencies') {
+            steps {
+                sh '''
+                    # Create a virtual environment
+                    python3 -m venv venv
+
+                    # Activate the virtual environment
+                    source venv/bin/activate
+
+                    # Upgrade pip (optional but recommended)
+                    pip install --upgrade pip
+
+                    # Install project dependencies
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+
     stage('Install Requirements') {
             steps {
                 // Install pip packages or other dependencies if needed
