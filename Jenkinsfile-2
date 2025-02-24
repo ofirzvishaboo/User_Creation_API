@@ -1,7 +1,5 @@
 pipeline {
-   agent {
-        docker { image 'demisto/python3' }
-    }
+   agent any
   stages {
     stage('Set Default Docker Context') {
             steps {
