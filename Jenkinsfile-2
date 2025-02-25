@@ -41,8 +41,7 @@ pipeline {
     stage('Build Docker Image - Locally') {
       steps {
           // Build Docker image locally
-        sh 'systemctl status docker'
-        sh 'newgrp docker'
+        sh 'service docker start'
         sh 'docker build -t ofirzvishaboo/flask_name_api .'
         }
     }
