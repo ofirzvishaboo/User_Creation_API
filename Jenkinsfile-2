@@ -41,7 +41,7 @@ pipeline {
     stage('Build Docker Image - Locally') {
       steps {
           // Build Docker image locally
-        sh 'usermod -a -G docker jenkins'
+        sh 'newgrp docker'
         sh 'docker build -t ofirzvishaboo/flask_name_api .'
         }
     }
