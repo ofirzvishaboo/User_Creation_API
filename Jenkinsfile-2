@@ -15,7 +15,6 @@ pipeline {
     stage('Install Requirements') {
             steps {
                 // Install pip packages or other dependencies if needed
-                sh '. venv/bin/activate'
                 sh 'pip3 install -r requirements.txt'
             }
         }
