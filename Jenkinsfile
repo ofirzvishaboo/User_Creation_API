@@ -28,7 +28,7 @@ pipeline {
 
     stage('run frontend_testing') {
       steps {
-        sh 'docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-chrome:latest'
+        sh 'docker run -d --name selenium -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-firefox:latest'
         sh 'python3 frontend_testing.py'
       }
     }
@@ -39,11 +39,17 @@ pipeline {
       }
     }
 
-    stage('run clean_environment') {
-      steps {
-        sh 'python3 clean_environment.py'
-      }
-    }
+    // stage('run clean_environment') {
+    //   steps {
+        
+    //   }
+    // }
 
   }
+  post {
+        always {
+            sh 'docker stop selenium'
+            sh 'python3 clean_environment.py'
+        }
+    }
 }
