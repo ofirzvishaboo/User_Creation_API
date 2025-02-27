@@ -11,8 +11,8 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 class FrontEndTests:
     def __init__(self, user_id=1):
         driver_path = os.environ.get('DRIVER_PATH')
-        options = get_default_firefox_options()
-        self.driver = webdriver.Remote(command_executor=server, options=options)
+        # options = get_default_firefox_options()
+        self.driver = webdriver.Remote(command_executor=server)
         # self.driver = webdriver.Chrome(service=Service(driver_path))
         self.driver.implicitly_wait(10)
         self.driver.get(f'http://127.0.0.1:5001/users/get_user_data/{user_id}')
