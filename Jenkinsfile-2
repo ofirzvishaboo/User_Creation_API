@@ -41,7 +41,7 @@ pipeline {
     stage('Build Docker Image - Locally') {
       steps {
           // Build Docker image locally
-        sh 'sudo service docker start'
+        sh 'service docker start'
         sh 'docker build -t ofirzvishaboo/flask_name_api .'
         }
     }
