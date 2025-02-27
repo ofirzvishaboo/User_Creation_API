@@ -28,6 +28,7 @@ pipeline {
 
     stage('run frontend_testing') {
       steps {
+        sh 'docker run -d -p 4444:4444 -p 7900:7900 --shm-size="2g" selenium/standalone-chrome:latest'
         sh 'python3 frontend_testing.py'
       }
     }
