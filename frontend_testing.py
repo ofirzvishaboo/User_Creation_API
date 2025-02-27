@@ -1,6 +1,7 @@
 import os
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from selenium import webdriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
@@ -11,17 +12,17 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 class FrontEndTests:
     def __init__(self, user_id=1):
         driver_path = os.environ.get('DRIVER_PATH')
-        # options = get_default_firefox_options()
-        capabilities = DesiredCapabilities.FIREFOX
-        service = webdriver.FirefoxService()
-        options = webdriver.FirefoxOptions()
+        options = Options()
         options.add_argument('--ignore-ssl-errors=yes')
         options.add_argument('--ignore-certificate-errors')
-        # capabilities['platform'] = "WINDOWS"
-        # capabilities['version'] = "10"
-        # self.driver = webdriver.Remote(command_executor='http://localhost:4444⁠/wd/hub',
-        # options=options)
-        self.driver = webdriver.Firefox(service=service('http://localhost:4444⁠/wd/hub'), options=options)
+        
+        # Make sure the URL is exactly correct without hidden characters
+        grid_url = 'http://localhost:4444/wd/hub'
+        
+        self.driver = webdriver.Remote(
+            command_executor=grid_url,
+            options=options
+        )
         # self.driver = webdriver.Chrome(service=Service(driver_path))
         self.driver.implicitly_wait(10)
         self.driver.get(f'http://127.0.0.1:5001/users/get_user_data/{user_id}')
