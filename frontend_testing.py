@@ -13,7 +13,7 @@ class FrontEndTests:
         driver_path = os.environ.get('DRIVER_PATH')
         self.driver = webdriver.Remote(
         command_executor='http://localhost:4444/wd/hub',
-        desired_capabilities=DesiredCapabilities.CHROME
+        desired_capabilities=DesiredCapabilities.FIREFOX
         )
         # self.driver = webdriver.Chrome(service=Service(driver_path))
         self.driver.implicitly_wait(10)
