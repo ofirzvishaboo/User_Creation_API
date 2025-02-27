@@ -49,6 +49,7 @@ pipeline {
   post {
         always {
             sh 'docker stop selenium'
+            sh 'docker rm selenium'
             sh 'python3 clean_environment.py'
         }
     }
