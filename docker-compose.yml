@@ -4,7 +4,7 @@ services:
      image: mysql:8.0
      container_name: database
      volumes:
-       - ./mydb:/var/lib/mysql
+      - mydb:/var/lib/mysql
      environment:
        MYSQL_ROOT_PASSWORD: pythoncourse
        MYSQL_DATABASE: my_db
