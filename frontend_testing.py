@@ -13,13 +13,15 @@ class FrontEndTests:
         driver_path = os.environ.get('DRIVER_PATH')
         # options = get_default_firefox_options()
         capabilities = DesiredCapabilities.FIREFOX
+        service = webdriver.FirefoxService()
         options = webdriver.FirefoxOptions()
         options.add_argument('--ignore-ssl-errors=yes')
         options.add_argument('--ignore-certificate-errors')
         # capabilities['platform'] = "WINDOWS"
         # capabilities['version'] = "10"
-        self.driver = webdriver.Remote(command_executor='http://localhost:4444⁠/wd/hub',
-        options=options)
+        # self.driver = webdriver.Remote(command_executor='http://localhost:4444⁠/wd/hub',
+        # options=options)
+        self.driver = webdriver.Firefox(service=service('http://localhost:4444⁠/wd/hub', options=options)
         # self.driver = webdriver.Chrome(service=Service(driver_path))
         self.driver.implicitly_wait(10)
         self.driver.get(f'http://127.0.0.1:5001/users/get_user_data/{user_id}')
