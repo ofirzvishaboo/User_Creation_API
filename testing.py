@@ -1,4 +1,4 @@
 import requests
 
-res = requests.post("http://localhost:3000/users/1", json={'user_name': 'ofir'})
-print(res.status_code)
+res = requests.get("http://0.0.0.0:3000/users/1")
+print(res.json())

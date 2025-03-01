@@ -5,13 +5,13 @@ import os
 import signal
 
 app = Flask(__name__)
-mdb_connector = DBConnector()
+mdb_connector = DBConnector(port=3307)
 
 
 @app.route('/users/get_user_data/<user_id>', methods=['GET', 'POST', 'DELETE', 'PUT'])
 def user(user_id):
     if request.method == 'GET':
-        res = requests.get(f'http://127.0.0.1:5000/users/{user_id}')
+        res = requests.get(f'http://0.0.0.0:3000/users/{user_id}')
         name = res.json()["user_name"]
         # user_name = mdb_connector.select_id(user_id)
         if name is None:
@@ -28,4 +28,4 @@ def stop_server():
 
 
 if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=5001)
+    app.run(host='0.0.0.0', port=5001)
