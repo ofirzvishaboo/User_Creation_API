@@ -5,7 +5,7 @@ import os
 import signal
 
 app = Flask(__name__)
-mdb_connector = DBConnector(port=3307)
+mdb_connector = DBConnector()
 
 
 @app.route('/users/get_user_data/<user_id>', methods=['GET', 'POST', 'DELETE', 'PUT'])
