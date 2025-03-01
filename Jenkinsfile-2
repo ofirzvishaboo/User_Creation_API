@@ -77,11 +77,17 @@ pipeline {
       }
     }
 
-    stage('Clean Environment') {
-      steps {
-        sh 'docker-compose down'
-        sh 'docker rmi ofirzvishaboo/flask_name_api:latest'
-      }
-    }
+    // stage('Clean Environment') {
+    //   steps {
+    //     sh 'docker-compose down'
+    //     sh 'docker rmi ofirzvishaboo/flask_name_api:latest'
+    //   }
+    // }
   }
+  post {
+        always {
+              sh 'docker-compose down'
+              sh 'docker rmi ofirzvishaboo/flask_name_api:latest'
+            }
+        }
 }
