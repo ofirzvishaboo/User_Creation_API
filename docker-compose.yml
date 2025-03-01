@@ -20,6 +20,7 @@ services:
 #      - -c
 #      - |-
 #        sh wait-for-db.sh
+    container_name: devops-rest
     depends_on:
       - db
     image: ofirzvishaboo/flask_name_api:latest
