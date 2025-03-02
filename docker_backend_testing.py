@@ -1,7 +1,7 @@
 import requests
 from db_connector import DBConnector
 
-db_connector = DBConnector()
+db_connector = DBConnector(host='localhost')
 
 
 class BackEndTests:

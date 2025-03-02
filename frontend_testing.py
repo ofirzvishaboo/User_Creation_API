@@ -15,15 +15,15 @@ class FrontEndTests:
         options = Options()
         options.add_argument('--ignore-ssl-errors=yes')
         options.add_argument('--ignore-certificate-errors')
-        
+
         # Make sure the URL is exactly correct without hidden characters
-        grid_url = 'http://localhost:4444/wd/hub'
-        
-        self.driver = webdriver.Remote(
-            command_executor=grid_url,
-            options=options
-        )
-        # self.driver = webdriver.Chrome(service=Service(driver_path))
+        # grid_url = 'http://localhost:4444/wd/hub'
+
+        # self.driver = webdriver.Remote(
+        #     command_executor=grid_url,
+        #     options=options
+        # )
+        self.driver = webdriver.Chrome(service=Service(driver_path))
         self.driver.implicitly_wait(10)
         self.driver.get(f'http://127.0.0.1:5001/users/get_user_data/{user_id}')
 

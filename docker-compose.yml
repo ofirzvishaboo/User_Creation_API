@@ -28,7 +28,7 @@ services:
       - "3000:3000"
       - "5001:5001"
     entrypoint: >
-      bash -c "python3 rest_app.py & python3 web_app.py & python3 testing.py"
+      bash -c "python3 rest_app.py & python3 web_app.py"
     environment:
       database_host: host.docker.internal
       MYSQL_DB_HOST: db:3306
